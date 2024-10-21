@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import NavCpn from "@/components/Nav/NavCpn";
+import Header from "@/components/Header";
 import { ThemeProvider } from "@/components/ThemeProvider";
-
+import Footer from "@/components/Footer";
+import { SITE_METADATA } from "@/constant";
 // SEO template
 export const metadata: Metadata = {
   title: {
-    template: "%s | Joe's Blog",
-    default: "Joe's Blog",
+    template: `%s | ${SITE_METADATA.title}`,
+    default: SITE_METADATA.title,
   },
-  description: "Joe's Blog Application",
+  description: SITE_METADATA.description,
 };
 
 export default function RootLayout({
@@ -27,8 +28,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="flex flex-col items-center justify-center">
-            <NavCpn />
-            {children}
+            <Header />
+            <main className="mb-auto grow">{children}</main>
+            <Footer />
           </div>
         </ThemeProvider>
       </body>

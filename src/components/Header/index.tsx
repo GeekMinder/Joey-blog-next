@@ -1,26 +1,23 @@
 "use client";
-import { ModeToggle } from "@/components/ModelToggle";
-import { navLinks } from "@/route/navlinks";
-// import clsx from "clsx";
+import { ThemeSwitcher } from "@/components/ThemeSwitcher";
+import { navLinks } from "@/constant/navigation";
 import Link from "next/link";
 import { Button } from "../ui/button";
-// import { useRouter } from "next/router";
-import Image from "next/image";
-import lava from "@/public/lava.jpg";
-export default function NavCpn() {
+import { MobileNav } from "./mobile-nav";
+import { MyAvatar } from "@/components/Avatar";
+import { SITE_METADATA } from "@/constant";
+export default function Header() {
   return (
-    <header className="sticky top-0 py-3 bg-opacity-80 backdrop-blur-md w-full">
+    <header className="sticky top-0 py-3 z-40 bg-opacity-80 backdrop-blur w-full border-b border-zinc-900/10">
       <div className="flex justify-between items-center max-w-3xl px-3 mx-auto xl:max-w-5xl xl:px-0">
         <div className="flex items-center gap-2">
-          <Image
-            src={lava}
-            width={50}
-            height={50}
-            alt="Joe's Avatar"
-            className="rounded-full"
-          />
-          <Link href="/home" aria-label="Joe's Blog" className="text-xl">
-            Joe&apos;s Blog
+          <MyAvatar />
+          <Link
+            href="/home"
+            aria-label={SITE_METADATA.title}
+            className="text-xl font-bold"
+          >
+            {SITE_METADATA.title}
           </Link>
         </div>
         <div className="flex items-center text-base leading-5 gap-2">
@@ -33,7 +30,8 @@ export default function NavCpn() {
               );
             })}
           </div>
-          <ModeToggle />
+          <ThemeSwitcher />
+          <MobileNav />
         </div>
       </div>
     </header>
