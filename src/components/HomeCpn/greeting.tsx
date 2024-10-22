@@ -4,11 +4,11 @@ export function Greeting() {
   return (
     <div
       className={clsx(
-        "font-extrabold tracking-tight",
+        "font-extrabold tracking-tight italic",
         "text-[40px] leading-[60px] md:text-[68px] md:leading-[100px]",
         "bg-clip-text text-transparent",
-        "bg-[radial-gradient(ellipse_at_right,_var(--tw-gradient-stops))] from-yellow-600 to-lime-600",
-        "dark:bg-gradient-to-l dark:from-emerald-500 dark:to-lime-600"
+        "bg-gradient-to-r from-[#12c2e9] via-[#c471ed] to-[#f64f59]",
+        "text-center md:text-left"
       )}
     >
       Hola, Amigo!

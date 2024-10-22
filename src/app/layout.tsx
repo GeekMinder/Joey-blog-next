@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Footer from "@/components/Footer";
 import { SITE_METADATA } from "@/constant";
+
 // SEO template
 export const metadata: Metadata = {
   title: {
@@ -29,7 +30,7 @@ export default function RootLayout({
         >
           <div className="flex flex-col items-center justify-center">
             <Header />
-            <main className="mb-auto grow">{children}</main>
+            <main className="mb-auto grow w-full">{children}</main>
             <Footer />
           </div>
         </ThemeProvider>
