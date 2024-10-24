@@ -10,7 +10,7 @@ export function SelfIntroduction() {
     const typed = new Typed(el.current, {
       strings: [
         "I live in <span className='font-medium'>Shanghai</span>.",
-        "I am a FE developer since 2020.",
+        "I am a Front-End engineer since 2020.",
         "I am a fan of <span className='font-medium'>TypeScript</span> and <span className='font-medium'>React</span>.",
         "I also love <span className='font-medium'>golang</span>.",
         "Maybe full-stack dev in the future?",

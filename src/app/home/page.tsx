@@ -12,7 +12,7 @@ export default function Home() {
         <div
           className={`mb-6 mt-4 md:mb-8 text-slate-400 text-lg font-light ${ubuntuMono.className} md:pr-8`}
         >
-          <p>I am a passionate FrontEnd developer.</p>
+          <p>I am a passionate Front-End developer.</p>
           <p>But my first job was Python developer.</p>
           <p>My skills include React with TS, Vue, etc.</p>
           <p>I am learning golang.</p>

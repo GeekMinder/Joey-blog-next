@@ -19,3 +19,22 @@ export const AUTHOR_INFO = {
     csdn: "https://blog.csdn.net/weixin_42387311",
   },
 };
+
+export const safeLocalStorage = {
+  setItem: (key: string, value: string): void => {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(key, value);
+    }
+  },
+  getItem: (key: string): string | null => {
+    if (typeof window !== "undefined") {
+      return window.localStorage.getItem(key);
+    }
+    return null;
+  },
+  removeItem: (key: string): void => {
+    if (typeof window !== "undefined") {
+      window.localStorage.removeItem(key);
+    }
+  },
+};
