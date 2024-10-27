@@ -23,6 +23,7 @@ export function DashLineText({
         "bg-gradient-to-r bg-left-bottom bg-no-repeat",
         "transition-[background-size] duration-[var(--duration,300ms)]",
         "from-[#43e97b] via-[#38f9d7] to-[#00f2fe]",
+        "dark:from-[#4a00e0] dark:via-[#8e2de2] dark:to-[#c471ed]",
         active
           ? "bg-[length:100%_50%] hover:bg-[length:100%_100%]"
           : "bg-[length:0px_50%] hover:bg-[length:100%_50%]",

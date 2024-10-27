@@ -1,25 +1,12 @@
 "use client";
 
 import { AUTHOR_INFO, safeLocalStorage } from "@/constant";
-import { GithubIcon } from "../Icon/github";
-import { JuejinIcon } from "../Icon/juejin";
 import { Fragment, useEffect, useState } from "react";
 import { MapPin } from "lucide-react";
 import loadingGIF from "@/public/loading.gif";
 import { RemoteImage } from "../common/remoteImage";
 import { getRandomPhoto } from "@/api/unsplash";
-const SOCIAL_LIST = [
-  {
-    platform: "github",
-    icon: <GithubIcon className="w-4 h-4 dark:fill-white" />,
-    href: AUTHOR_INFO.social.github,
-  },
-  {
-    platform: "juejin",
-    icon: <JuejinIcon className="w-4 h-4 dark:fill-white" />,
-    href: AUTHOR_INFO.social.juejin,
-  },
-];
+import { SOCIAL_LIST } from "@/constant/navigation";
 
 // 随机获取图片 一天只请求一次 放localstorage好了
 // 没有localstorage 或者 过期了 请求

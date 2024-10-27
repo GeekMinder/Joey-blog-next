@@ -21,7 +21,11 @@ export default function Header() {
             aria-label={SITE_METADATA.title}
             className="text-xl font-bold"
           >
-            {SITE_METADATA.title}
+            <DashLineText
+              className={clsx(pathname === "/home" && "bg-[length:100%_50%]")}
+            >
+              {SITE_METADATA.title}
+            </DashLineText>
           </Link>
         </div>
         <div className="flex items-center text-base leading-5 gap-2">

@@ -10,14 +10,17 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
-import { navLinks } from "@/constant/navigation";
+import { MOBILE_SOCIAL_LIST, navLinks } from "@/constant/navigation";
 import Link from "next/link";
 import { SITE_METADATA } from "@/constant";
 import { MyAvatar } from "@/components/Avatar";
-import { GithubIcon } from "../Icon/github";
+import { DashLineText } from "../common/dashlineText";
+import clsx from "clsx";
+import { usePathname } from "next/navigation";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
   return (
     <div className="sm:hidden">
       <Sheet open={open} onOpenChange={setOpen}>
@@ -40,22 +43,43 @@ export function MobileNav() {
               </SheetTitle>
             </div>
           </SheetHeader>
-          <div className="flex flex-col space-y-4 mt-7">
+          <div className="flex flex-col space-y-4 mt-7 items-start">
+            <h2 className="text-xl font-bold mb-4 text-gray-500">Menu</h2>
             {navLinks.map((link) => (
               <Link
+                className=""
                 key={link.title}
                 href={link.href}
                 onClick={() => setOpen(false)}
               >
-                <div className="flex gap-2 items-center w-full justify-start font-medium">
-                  {link.icon}
-                  {link.title}
+                <div className="flex items-center font-medium">
+                  <div className="mr-4">{link.icon}</div>
+                  <DashLineText
+                    className={clsx(
+                      pathname === link.href && "bg-[length:100%_50%]"
+                    )}
+                  >
+                    {link.title}
+                  </DashLineText>
                 </div>
               </Link>
             ))}
           </div>
-          <div className="flex justify-center mt-4">
-            <GithubIcon className="w-7 h-7" />
+          <div className="flex gap-4 mt-20 flex-col">
+            <div className="text-xl font-bold mb-4 text-gray-500">Social</div>
+            <div>
+              {MOBILE_SOCIAL_LIST.map(({ platform, icon, href }) => (
+                <a
+                  key={platform}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center mt-4 gap-2 font-medium"
+                >
+                  {icon} / {platform}
+                </a>
+              ))}
+            </div>
           </div>
         </SheetContent>
       </Sheet>
