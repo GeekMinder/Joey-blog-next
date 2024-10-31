@@ -1,5 +1,7 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
+import { getLatestArticles } from "@/api/article";
 
 const CherryMarkdown = dynamic(
   () => import("@/components/Blog/cherry-markdown"),

@@ -1,6 +1,7 @@
-import { ubuntuMono } from "@/components/fonts";
+import { ubuntu } from "@/components/fonts";
 import { InfoCard } from "@/components/Header/info-card";
 import { Greeting } from "@/components/HomeCpn/greeting";
+import { LatestBlogs } from "@/components/HomeCpn/latest-blog";
 import { SelfIntroduction } from "@/components/HomeCpn/self-introduction";
 
 export default function Home() {
@@ -10,7 +11,7 @@ export default function Home() {
       <SelfIntroduction />
       <div className="md:pb-8 flex md:flex-row md:justify-between flex-col">
         <div
-          className={`mb-6 mt-4 md:mb-8 text-slate-400 text-lg font-light ${ubuntuMono.className} md:pr-8`}
+          className={`mb-6 mt-4 md:mb-8 text-slate-400 text-lg font-light ${ubuntu.className} md:pr-8`}
         >
           <p>I am a passionate Front-End developer.</p>
           <p>But my first job was Python developer.</p>
@@ -23,13 +24,7 @@ export default function Home() {
         </div>
       </div>
 
-      {(() => {
-        const 测试字符串 = [];
-        for (let i = 1; i <= 50; i++) {
-          测试字符串.push(`这是第${i}行测试字符串`);
-        }
-        return 测试字符串.map((字符串, 索引) => <div key={索引}>{字符串}</div>);
-      })()}
+      <LatestBlogs />
     </div>
   );
 }

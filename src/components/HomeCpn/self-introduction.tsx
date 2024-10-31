@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Typed from "typed.js";
-import { ubuntuMono } from "../fonts";
+import { ubuntu } from "../fonts";
 
 export function SelfIntroduction() {
   const el = React.useRef(null);
@@ -33,7 +33,7 @@ export function SelfIntroduction() {
 
   return (
     <div className="App">
-      <span ref={el} className={`text-lg ${ubuntuMono.className}`} />
+      <span ref={el} className={`text-lg ${ubuntu.className}`} />
     </div>
   );
 }

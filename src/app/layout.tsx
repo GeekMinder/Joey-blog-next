@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Footer from "@/components/Footer";
 import { SITE_METADATA } from "@/constant";
+import { nunitoSans, openSans } from "@/components/fonts";
 
 // SEO template
 export const metadata: Metadata = {
@@ -21,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="antialiased">
+      <body className={`antialiased ${nunitoSans.className}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
