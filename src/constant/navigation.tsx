@@ -1,6 +1,6 @@
 import { GithubIcon } from "@/components/Icon/github";
 import { JuejinIcon } from "@/components/Icon/juejin";
-import { Sticker, PenTool } from "lucide-react";
+import { Sticker, PenTool, Send } from "lucide-react";
 import { AUTHOR_INFO } from ".";
 
 export const navLinks = [
@@ -10,14 +10,19 @@ export const navLinks = [
 
 export const SOCIAL_LIST = [
   {
-    platform: "github",
+    platform: "Github",
     icon: <GithubIcon className="w-4 h-4 dark:fill-white" />,
     href: AUTHOR_INFO.social.github,
   },
   {
-    platform: "juejin",
+    platform: "Juejin",
     icon: <JuejinIcon className="w-4 h-4 dark:fill-white" />,
     href: AUTHOR_INFO.social.juejin,
+  },
+  {
+    platform: "Email",
+    icon: <Send className="w-4 h-4 dark:fill-white" />,
+    href: `mailto:${AUTHOR_INFO.social.email}`,
   },
 ];
 

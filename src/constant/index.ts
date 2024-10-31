@@ -13,10 +13,12 @@ export const AUTHOR_INFO = {
   avatar: "/avatar.png",
   identity: "Front-End Engineer | Learner",
   address: "Shanghai, China",
+  home: "Jiangsu, China",
   social: {
     github: "https://github.com/GeekMinder",
     juejin: "https://juejin.cn/user/1108733954635741",
     csdn: "https://blog.csdn.net/weixin_42387311",
+    email: "nijiahuipersonal@163.com",
   },
 };
 

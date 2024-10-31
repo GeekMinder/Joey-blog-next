@@ -9,7 +9,7 @@ export default function Home() {
     <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 xl:px-12 pt-4 lg:pt-12">
       <Greeting />
       <SelfIntroduction />
-      <div className="md:pb-8 flex md:flex-row md:justify-between flex-col">
+      <div className="flex md:flex-row md:justify-between flex-col">
         <div
           className={`mb-6 mt-4 md:mb-8 text-slate-400 text-lg font-light ${ubuntu.className} md:pr-8`}
         >
