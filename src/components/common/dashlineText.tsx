@@ -21,7 +21,7 @@ export function DashLineText({
     <Component
       className={clsx([
         "bg-gradient-to-r bg-left-bottom bg-no-repeat",
-        "transition-[background-size] duration-[var(--duration,300ms)]",
+        "transition-[background-size] duration-300",
         "from-[#43e97b] via-[#38f9d7] to-[#00f2fe]",
         "dark:from-[#4a00e0] dark:via-[#8e2de2] dark:to-[#c471ed]",
         active

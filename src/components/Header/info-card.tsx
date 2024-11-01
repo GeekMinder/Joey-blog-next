@@ -7,6 +7,7 @@ import loadingGIF from "@/public/loading.gif";
 import { RemoteImage } from "../common/remoteImage";
 import { getRandomPhoto } from "@/api/unsplash";
 import { SOCIAL_LIST } from "@/constant/navigation";
+import { AdvancedLoadingEffects } from "../common/loading";
 
 // 随机获取图片 一天只请求一次 放localstorage好了
 // 没有localstorage 或者 过期了 请求
@@ -63,13 +64,22 @@ export const InfoCard = () => {
     <div className="group h-40 w-full  relative [perspective:1000px]">
       <div className="flex flex-col justify-center w-full h-full absolute [backface-visibility:hidden] transition-transform duration-700 ease-in-out rounded-[0.4rem] shadow-[0_0.2rem_0.5rem_rgba(0,0,0,0.18)] [text-shadow:0_0.15rem_0.2rem_rgba(0,0,0,0.2)] [transform:rotateY(0deg)] group-hover:[transform:rotateY(180deg)] bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 p-[2px]">
         <div className="flex flex-col justify-center w-full h-full bg-white dark:bg-gray-800 rounded-[0.3rem]">
-          <RemoteImage
-            src={photo.src || loadingGIF.src}
-            alt={photo.alt}
-            className="w-full h-full rounded-[0.3rem] object-cover"
-            width={400}
-            height={160}
-          />
+          {photo.src ? (
+            <RemoteImage
+              src={photo.src}
+              alt={photo.alt}
+              className="w-full h-full rounded-[0.3rem] object-cover"
+              width={400}
+              height={160}
+              loading="eager"
+            />
+          ) : (
+            <div className="relative w-10 h-10">
+              <div className="w-full h-full rounded-full border-4 border-gray-200">
+                <div className="w-full h-full rounded-full border-4 border-blue-500 animate-spin border-t-transparent" />
+              </div>
+            </div>
+          )}
           <div className="absolute bottom-2 right-2 bg-black bg-opacity-50 text-white text-xs p-1 rounded">
             <p>
               camera：{photo.camera} author：{photo.user}

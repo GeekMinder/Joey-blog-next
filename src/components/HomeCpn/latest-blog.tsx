@@ -4,14 +4,14 @@ import { DashLineText } from "../common/dashlineText";
 import { Blog } from "@/types/blog";
 import { BlogPreview } from "../Blog/blog-preview";
 import { useEffect, useState } from "react";
-import { getLatestArticles } from "@/api/article";
+import { getLatestBlogs } from "@/api/blog";
 import { PawPrint } from "lucide-react";
 
 export const LatestBlogs: React.FC = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   useEffect(() => {
     try {
-      getLatestArticles().then((res) => {
+      getLatestBlogs(5, 1).then((res) => {
         if (res.code === 200) {
           setBlogs(res.data as Blog[]);
         }
