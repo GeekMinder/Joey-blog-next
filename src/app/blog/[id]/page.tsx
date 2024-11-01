@@ -7,6 +7,12 @@ import Link from "next/link";
 import { getOneBlogById } from "@/api/blog";
 import { Blog } from "@/types/blog";
 
+import { formatDate } from "@/lib/utils";
+import { CircleArrowUp, Heart, Undo2 } from "lucide-react";
+import FixedButton from "@/components/common/fixed-button";
+import { useRouter } from "next/navigation";
+import { safeLocalStorage } from "@/constant";
+
 type Props = {
   params: {
     id: string;
@@ -89,10 +95,26 @@ function useActiveTocItem(ids: string[]) {
 
 export default function BlogPage({ params }: Props) {
   const { id } = params;
+  const router = useRouter();
+  // const mountRef = useRef(false)
+  const [mounted, setMounted] = useState(false);
+  const loveBlogs = safeLocalStorage.getItem("MY_LOVE_BLOG") ?? "[]";
+  // 获取到已喜欢的blog列表
+  const currentloveBlogsArr = JSON.parse(loveBlogs);
+
   const [blog, setBlog] = useState<Blog>();
+  const [isLove, setIsLove] = useState(currentloveBlogsArr.includes(id));
   const [toc, setToc] = useState<{ level: number; text: string; id: string }[]>(
     []
   );
+
+  useEffect(() => {
+    // mountRef.current = true
+    // return () => {mountRef.current = false}
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
+
   const [htmlContent, setHtmlContent] = useState<string | Promise<string>>("");
   // 配置 marked 使用自定义渲染器
   marked.setOptions({ renderer, async: true });
@@ -137,6 +159,28 @@ export default function BlogPage({ params }: Props) {
 
   return (
     <article className="mx-auto w-full max-w-6xl px-4 sm:px-6 xl:px-12 pt-4 lg:pt-12">
+      {/* meta 信息 */}
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center gap-2">
+          {blog?.categories.map((c) => (
+            <span
+              key={c.ID}
+              className="px-2 py-0.5 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs"
+            >
+              # {c.name}
+            </span>
+          ))}
+        </div>
+        <div className="text-gray-500 dark:text-gray-400 flex items-center gap-2">
+          <span>
+            create at：{blog?.CreatedAt ? formatDate(blog?.CreatedAt) : ""}
+          </span>
+          <span>/</span>
+          <span>
+            update at：{blog?.UpdatedAt ? formatDate(blog?.UpdatedAt) : ""}
+          </span>
+        </div>
+      </div>
       <div className="grid grid-cols-1 gap-12 pb-10 pt-8 lg:grid-cols-12 lg:pt-10">
         <div className="divide-y divide-gray-200 dark:divide-gray-700 lg:col-span-8 xl:col-span-9">
           {htmlContent ? (
@@ -184,6 +228,49 @@ export default function BlogPage({ params }: Props) {
           )}
         </div>
       </div>
+      {mounted && (
+        <div className="flex justify-center items-center gap-2">
+          <div className={clsx(isLove ? "hidden" : "")}>like this blog?</div>
+          <Heart
+            fill={isLove ? "currentColor" : "none"}
+            className={clsx(["w-4 h-4 cursor-pointer"], {
+              "text-red-500": isLove,
+            })}
+            onClick={() => {
+              setIsLove(!isLove);
+              // 逗逗你的呀
+              const loveBlogsArr = JSON.parse(loveBlogs);
+              safeLocalStorage.setItem(
+                "MY_LOVE_BLOG",
+                JSON.stringify(Array.from(new Set([...loveBlogsArr, id])))
+              );
+            }}
+          />
+          <div className={clsx(isLove ? "" : "hidden")}>thank you !</div>
+        </div>
+      )}
+      <FixedButton
+        position="bottom-20 right-10"
+        icon={
+          <Undo2
+            className="h-8 w-8 cursor-pointer hover:text-blue-500 hover:scale-110 hover:-translate-y-1 transition-all duration-300"
+            aria-label="back to home"
+            onClick={() => router.replace("/home")}
+          />
+        }
+        tooltipText="回到首页"
+      />
+      <FixedButton
+        position="bottom-8 right-10"
+        icon={
+          <CircleArrowUp
+            className="h-8 w-8 cursor-pointer hover:text-blue-500 hover:scale-110 hover:-translate-y-1 transition-all duration-300"
+            aria-label="scroll to top"
+            onClick={() => window.scrollTo({ top: 0 })}
+          />
+        }
+        tooltipText="回到顶部"
+      />
     </article>
   );
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const API_BASE_URL = "http://127.0.0.1:8080/api";
 
 interface RequestBody {
@@ -19,8 +20,11 @@ export const postRequest = async <T>(
 };
 
 export const getRequest = async <
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  T = { code: number; data: { [key: string]: any }; message: string }
+  T = {
+    code: number;
+    data: { [key: string]: any };
+    message: string;
+  }
 >(
   url: string
 ): Promise<T> => {

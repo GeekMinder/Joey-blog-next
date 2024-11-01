@@ -1,7 +1,7 @@
-import { getRequest, postRequest } from "../config";
+import { getRequest } from "../config";
 
 // 获取最新的5篇文章
-export const getLatestBlogs = async (pageSize: number, pageNum: number) => {
+export const getBlogs = async (pageSize: number, pageNum: number) => {
   return getRequest(`/article?pageSize=${pageSize}&pageNum=${pageNum}`);
 };
 

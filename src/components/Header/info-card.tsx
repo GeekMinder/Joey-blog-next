@@ -74,9 +74,11 @@ export const InfoCard = () => {
               loading="eager"
             />
           ) : (
-            <div className="relative w-10 h-10">
-              <div className="w-full h-full rounded-full border-4 border-gray-200">
-                <div className="w-full h-full rounded-full border-4 border-blue-500 animate-spin border-t-transparent" />
+            <div className="flex items-center justify-center w-full h-full">
+              <div className="relative w-10 h-10">
+                <div className="w-full h-full rounded-full border-4 border-gray-200">
+                  <div className="w-full h-full rounded-full border-4 border-blue-500 animate-spin border-t-transparent" />
+                </div>
               </div>
             </div>
           )}

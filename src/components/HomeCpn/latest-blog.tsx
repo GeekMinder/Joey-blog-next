@@ -4,14 +4,14 @@ import { DashLineText } from "../common/dashlineText";
 import { Blog } from "@/types/blog";
 import { BlogPreview } from "../Blog/blog-preview";
 import { useEffect, useState } from "react";
-import { getLatestBlogs } from "@/api/blog";
+import { getBlogs } from "@/api/blog";
 import { PawPrint } from "lucide-react";
 
 export const LatestBlogs: React.FC = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   useEffect(() => {
     try {
-      getLatestBlogs(5, 1).then((res) => {
+      getBlogs(5, 1).then((res) => {
         if (res.code === 200) {
           setBlogs(res.data as Blog[]);
         }
@@ -41,7 +41,7 @@ export const LatestBlogs: React.FC = () => {
         {blogs.map((blog) => (
           <li
             key={blog.ID}
-            className="py-4 relative pl-3 transition-all duration-300 hover:pl-6 group border border-gray-100/10 hover:border-gray-200/20 dark:border-gray-800 dark:hover:border-gray-700 hover:bg-gray-50/50 dark:hover:bg-gray-800/50 rounded-r-lg"
+            className="py-4 relative pl-3 transition-all duration-300 hover:pl-6 group border border-gray-100/10 hover:border-gray-200/30 dark:border-gray-800 dark:hover:border-gray-600 hover:bg-gray-100/80 dark:hover:bg-gray-800/80 rounded-r-lg bg-gray-50 dark:bg-gray-900"
           >
             <Link href={`/blog/${blog.ID}`}>
               <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-blue-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-all duration-300" />

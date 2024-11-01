@@ -33,7 +33,7 @@ export const BlogPreview: React.FC<Blog> = (props) => {
           <span>update at：{formatDate(UpdatedAt)}</span>
           <span className="hidden md:inline-flex">/</span>
         </div>
-        <div className="flex items-center gap-2 ">
+        <div className="gap-2 hidden md:flex items-center">
           <span>{view_count} views</span>
           <span>/</span>
           <span>{like_count} likes</span>
@@ -41,10 +41,10 @@ export const BlogPreview: React.FC<Blog> = (props) => {
           <span>{comment_count} comments</span>
         </div>
       </div>
-      <div className="text-xl font-bold tracking-tight md:text-2xl truncate overflow-hidden">
+      <div className="text-xl font-bold tracking-tight md:text-2xl line-clamp-1 py-4">
         {title}
       </div>
-      <div className="text-gray-500 dark:text-gray-400 line-clamp-3">
+      <div className="text-gray-500 dark:text-gray-400 line-clamp-1 italic">
         {desc}
       </div>
     </Fragment>

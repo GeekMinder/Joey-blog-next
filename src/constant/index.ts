@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const SITE_METADATA = {
   title: "Joe's Blog",
   author: "Joe",
@@ -39,4 +40,40 @@ export const safeLocalStorage = {
       window.localStorage.removeItem(key);
     }
   },
+};
+
+export const DEBOUNCE_TIME = 300;
+
+export const debounce = <T extends (...args: any[]) => any>(
+  fn: T,
+  delay: number,
+  options: { immediate?: boolean } = {}
+): ((...args: Parameters<T>) => void) => {
+  let timer: NodeJS.Timeout | null = null;
+  let result: ReturnType<T>;
+
+  return function (this: any, ...args: Parameters<T>) {
+    // 如果有定时器则清除
+    if (timer) clearTimeout(timer);
+
+    // 立即执行
+    if (options.immediate) {
+      const callNow = !timer;
+
+      timer = setTimeout(() => {
+        timer = null;
+      }, delay);
+
+      if (callNow) {
+        result = fn.apply(this, args); // 直接使用 this
+      }
+    } else {
+      timer = setTimeout(() => {
+        result = fn.apply(this, args); // 直接使用 this
+        timer = null;
+      }, delay);
+    }
+
+    return result;
+  };
 };
