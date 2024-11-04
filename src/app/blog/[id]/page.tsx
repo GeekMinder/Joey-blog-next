@@ -12,6 +12,7 @@ import { CircleArrowUp, Heart, Undo2 } from "lucide-react";
 import FixedButton from "@/components/common/fixed-button";
 import { useRouter } from "next/navigation";
 import { safeLocalStorage } from "@/constant";
+import { Comments } from "@/components/Blog/comments";
 
 type Props = {
   params: {
@@ -249,16 +250,19 @@ export default function BlogPage({ params }: Props) {
           <div className={clsx(isLove ? "" : "hidden")}>thank you !</div>
         </div>
       )}
+      {/* 评论 */}
+      <div className="my-8 border-t border-gray-200 dark:border-gray-700" />
+      <Comments className="" />
       <FixedButton
         position="bottom-20 right-10"
         icon={
           <Undo2
             className="h-8 w-8 cursor-pointer hover:text-blue-500 hover:scale-110 hover:-translate-y-1 transition-all duration-300"
             aria-label="back to home"
-            onClick={() => router.replace("/home")}
+            onClick={() => router.back()}
           />
         }
-        tooltipText="回到首页"
+        tooltipText="返回"
       />
       <FixedButton
         position="bottom-8 right-10"

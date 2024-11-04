@@ -3,11 +3,10 @@
 import { AUTHOR_INFO, safeLocalStorage } from "@/constant";
 import { Fragment, useEffect, useState } from "react";
 import { House, MapPin } from "lucide-react";
-import loadingGIF from "@/public/loading.gif";
+// import loadingGIF from "@/public/loading.gif";
 import { RemoteImage } from "../common/remoteImage";
 import { getRandomPhoto } from "@/api/unsplash";
 import { SOCIAL_LIST } from "@/constant/navigation";
-import { AdvancedLoadingEffects } from "../common/loading";
 
 // 随机获取图片 一天只请求一次 放localstorage好了
 // 没有localstorage 或者 过期了 请求

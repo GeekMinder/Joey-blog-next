@@ -1,3 +1,12 @@
+import {
+  Mapping,
+  Repo,
+  BooleanString,
+  AvailableLanguage,
+  InputPosition,
+  Loading,
+} from "@giscus/react/dist/types";
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export const SITE_METADATA = {
   title: "Joe's Blog",
@@ -7,6 +16,19 @@ export const SITE_METADATA = {
   language: "en-us",
   theme: "system",
   locale: "en_US",
+  comments: {
+    repo: process.env.NEXT_PUBLIC_GISCUS_REPO! as Repo,
+    repoId: process.env.NEXT_PUBLIC_GISCUS_PEPO_ID!,
+    category: process.env.NEXT_PUBLIC_GISCUS_CATEGORY!,
+    categoryId: process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID!,
+    mapping: "pathname" as Mapping,
+    reactionsEnabled: "1" as BooleanString,
+    emitMetadata: "0" as BooleanString,
+    lang: "en" as AvailableLanguage,
+    inputPosition: "top" as InputPosition,
+    loading: "lazy" as Loading,
+    strict: "0" as BooleanString,
+  },
 };
 
 export const AUTHOR_INFO = {

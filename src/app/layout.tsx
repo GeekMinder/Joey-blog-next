@@ -5,7 +5,6 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import Footer from "@/components/Footer";
 import { SITE_METADATA } from "@/constant";
 import { nunitoSans } from "@/components/fonts";
-import UpToTop from "@/components/common/up-to-top";
 
 // SEO template
 export const metadata: Metadata = {

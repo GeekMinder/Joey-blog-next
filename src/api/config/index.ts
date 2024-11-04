@@ -24,6 +24,7 @@ export const getRequest = async <
     code: number;
     data: { [key: string]: any };
     message: string;
+    total?: number;
   }
 >(
   url: string
