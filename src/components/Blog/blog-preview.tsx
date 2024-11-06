@@ -9,8 +9,8 @@ export const BlogPreview: React.FC<Blog> = (props) => {
     view_count,
     title,
     like_count,
-    UpdatedAt,
-    CreatedAt,
+    updated_at,
+    created_at,
     comment_count,
   } = props;
   return (
@@ -19,7 +19,7 @@ export const BlogPreview: React.FC<Blog> = (props) => {
         <div className="flex items-center gap-2">
           {categories.map((c) => (
             <span
-              key={c.ID}
+              key={c.id}
               className="px-2 py-0.5 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs"
             >
               # {c.name}
@@ -28,9 +28,9 @@ export const BlogPreview: React.FC<Blog> = (props) => {
           <span className="hidden md:inline-flex">/</span>
         </div>
         <div className="flex items-center gap-2">
-          <span>create at：{formatDate(CreatedAt)}</span>
+          <span>create at：{formatDate(created_at)}</span>
           <span>/</span>
-          <span>update at：{formatDate(UpdatedAt)}</span>
+          <span>update at：{formatDate(updated_at)}</span>
           <span className="hidden md:inline-flex">/</span>
         </div>
         <div className="gap-2 hidden md:flex items-center">

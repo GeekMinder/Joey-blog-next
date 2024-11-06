@@ -1,10 +1,9 @@
 import { Category } from "./category";
 
 export interface Blog {
-  ID: number;
-  CreatedAt: Date;
-  UpdatedAt: Date;
-  DeletedAt: null;
+  id: number;
+  created_at: Date;
+  updated_at: Date;
   title: string;
   content: string;
   desc: string;

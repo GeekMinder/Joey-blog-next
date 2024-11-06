@@ -165,7 +165,7 @@ export default function BlogPage({ params }: Props) {
         <div className="flex items-center gap-2">
           {blog?.categories.map((c) => (
             <span
-              key={c.ID}
+              key={c.id}
               className="px-2 py-0.5 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs"
             >
               # {c.name}
@@ -174,11 +174,11 @@ export default function BlogPage({ params }: Props) {
         </div>
         <div className="text-gray-500 dark:text-gray-400 flex items-center gap-2">
           <span>
-            create at：{blog?.CreatedAt ? formatDate(blog?.CreatedAt) : ""}
+            create at：{blog?.created_at ? formatDate(blog?.created_at) : ""}
           </span>
           <span>/</span>
           <span>
-            update at：{blog?.UpdatedAt ? formatDate(blog?.UpdatedAt) : ""}
+            update at：{blog?.updated_at ? formatDate(blog?.updated_at) : ""}
           </span>
         </div>
       </div>
