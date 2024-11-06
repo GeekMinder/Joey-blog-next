@@ -30,35 +30,50 @@ const AllBlog: React.FC = () => {
 
   const [category, setCategory] = useState<Category[]>([]);
   const [searchValue, setSearchValue] = useState("");
-  const paginationRef = useRef<PaginationProps>({
+  // const paginationRef = useRef<PaginationProps>({
+  //   pageNum: 1,
+  //   total: 0,
+  // });
+
+  const [pagination, setPagination] = useState({
     pageNum: 1,
-    // pageSize: 10,
     total: 0,
   });
 
-  const handlePageChange = async (pageNum: number) => {
-    paginationRef.current.pageNum = pageNum;
-    const res = await getBlogs(DEFAULTPAGE_SIZE, pageNum);
+  const [selectedCategory, setSelectedCategory] = useState<number>(0);
+
+  const handlePageChange = async (pageNum: number, categoryId?: number) => {
+    // paginationRef.current.pageNum = pageNum;
+    const res = await getBlogs(DEFAULTPAGE_SIZE, pageNum, categoryId);
     if (res.code === 200) {
       setBlogs(res.data as Blog[]);
-      paginationRef.current = {
-        ...paginationRef.current,
+      // paginationRef.current = {
+      //   ...paginationRef.current,
+      //   total: res.total ?? 0,
+      //   pageNum,
+      // };
+      setPagination((prev) => ({
+        ...prev,
         total: res.total ?? 0,
         pageNum,
-      };
+      }));
     }
   };
 
   // 首次先搜第一页
   useEffect(() => {
-    getBlogs(DEFAULTPAGE_SIZE, 1)
+    getBlogs(DEFAULTPAGE_SIZE, 1, 0)
       .then((res) => {
         if (res.code === 200) {
           setBlogs(res.data as Blog[]);
-          paginationRef.current = {
-            ...paginationRef.current,
-            total: res.total ?? 0,
-          };
+          // paginationRef.current = {
+          //   ...paginationRef.current,
+          //   total: res.total ?? 0,
+          // };
+          setPagination((prev) => ({
+            ...prev,
+            total: res.total ?? 0, // 更新总数
+          }));
         }
       })
       .catch((error) => {
@@ -83,6 +98,11 @@ const AllBlog: React.FC = () => {
     });
   }, []);
 
+  // 计算分页
+  const totalPages = Math.ceil(pagination.total / DEFAULTPAGE_SIZE);
+  const isLastPage = pagination.pageNum === totalPages;
+  const hasNoPages = totalPages === 0;
+
   return (
     <div className="pt-4 lg:pt-12">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 xl:px-12">
@@ -104,9 +124,25 @@ const AllBlog: React.FC = () => {
             {/* 分类 */}
             <div className="w-1/4">
               <select className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-all duration-200">
-                <option value="">全部分类</option>
+                <option
+                  value={0}
+                  key={0}
+                  onClick={() => {
+                    setSelectedCategory(0);
+                    handlePageChange(pagination.pageNum, 0);
+                  }}
+                >
+                  全部分类
+                </option>
                 {category.map((c) => (
-                  <option key={c.id} value={c.id}>
+                  <option
+                    key={c.id}
+                    value={c.id}
+                    onClick={() => {
+                      setSelectedCategory(c.id);
+                      handlePageChange(pagination.pageNum, c.id);
+                    }}
+                  >
                     {c.name}
                   </option>
                 ))}
@@ -144,28 +180,20 @@ const AllBlog: React.FC = () => {
         <div className="my-4 flex justify-between items-center gap-4">
           <button
             onClick={() =>
-              paginationRef.current.pageNum > 1 &&
-              handlePageChange(paginationRef.current.pageNum - 1)
+              pagination.pageNum > 1 &&
+              handlePageChange(pagination.pageNum - 1, selectedCategory)
             }
-            disabled={
-              paginationRef.current.pageNum === 1 ||
-              Math.ceil(paginationRef.current.total / DEFAULTPAGE_SIZE) === 0
-            }
+            disabled={pagination.pageNum === 1 || hasNoPages}
             className="flex items-center px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
           >
             <ArrowLeft className="w-4 h-4" /> Previous
           </button>
           <button
             onClick={() =>
-              paginationRef.current.pageNum <
-                Math.ceil(paginationRef.current.total / DEFAULTPAGE_SIZE) &&
-              handlePageChange(paginationRef.current.pageNum + 1)
+              !isLastPage &&
+              handlePageChange(pagination.pageNum + 1, selectedCategory)
             }
-            disabled={
-              paginationRef.current.pageNum ===
-                Math.ceil(paginationRef.current.total / DEFAULTPAGE_SIZE) ||
-              Math.ceil(paginationRef.current.total / DEFAULTPAGE_SIZE) === 0
-            }
+            disabled={isLastPage || hasNoPages}
             className="flex items-center px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
           >
             Next
