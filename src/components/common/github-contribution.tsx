@@ -2,5 +2,5 @@
 import GitHubCalendar from "react-github-calendar";
 
 export default function GithubContribution() {
-  return <GitHubCalendar username="GeekMinder" />;
+  return <GitHubCalendar username="GeekMinder" showWeekdayLabels />;
 }

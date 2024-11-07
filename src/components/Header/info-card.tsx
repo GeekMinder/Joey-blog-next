@@ -2,7 +2,7 @@
 
 import { AUTHOR_INFO, safeLocalStorage } from "@/constant";
 import { Fragment, useEffect, useState } from "react";
-import { House, MapPin } from "lucide-react";
+import { BicepsFlexed, House, MapPin } from "lucide-react";
 // import loadingGIF from "@/public/loading.gif";
 import { RemoteImage } from "../common/remoteImage";
 import { getRandomPhoto } from "@/api/unsplash";
@@ -95,15 +95,16 @@ export const InfoCard = () => {
       <div className="flex flex-col justify-center p-[0.25rem] w-full h-full absolute [backface-visibility:hidden] transition-transform duration-700 ease-in-out rounded-[0.4rem] shadow-[0_0.2rem_0.5rem_rgba(0,0,0,0.18)] [text-shadow:0_0.15rem_0.2rem_rgba(0,0,0,0.2)] [transform:rotateY(-180deg)] group-hover:[transform:rotateY(0deg)] bg-gradient-to-r from-purple-500 via-pink-500 to-red-500">
         <div className="flex flex-col justify-center w-full h-full bg-white dark:bg-gray-800 rounded-[0.3rem]">
           <div className="text-xl font-semibold text-gray-800 dark:text-white px-4">
-            {AUTHOR_INFO.name}’s Exra Info Here
+            {AUTHOR_INFO.name}
           </div>
-          <div className="py-2 text-gray-500 dark:text-gray-400 px-4">
-            {AUTHOR_INFO.identity}
+          <div className="text-gray-700 dark:text-gray-200 px-4 flex items-center gap-2">
+            <BicepsFlexed className="w-4 h-4" />
+            <span className="ml-1">{AUTHOR_INFO.identity}</span>
           </div>
           <div className="py-2 flex items-center text-gray-700 dark:text-gray-200 px-4 gap-2">
             <MapPin className="w-4 h-4" />
             <span className="ml-1">{AUTHOR_INFO.address}</span>
-            <span className="text-gray-400 dark:text-gray-500">|</span>
+            <span className="text-gray-700 dark:text-gray-200">|</span>
             <House className="w-4 h-4" />
             <span className="ml-1">{AUTHOR_INFO.home}</span>
           </div>
@@ -114,14 +115,14 @@ export const InfoCard = () => {
                   target="_blank"
                   href={href}
                   rel="noreferrer"
-                  className="flex items-center underline-offset-4 hover:underline"
+                  className="flex items-center underline-offset-4 hover:underline gap-2"
                 >
                   {icon}
-                  <span className="ml-px text-gray-500">/</span>
-                  <span className="ml-0.5">{platform}</span>
+                  {/* <span className="ml-px text-gray-500">/</span> */}
+                  <span className="ml-1">{platform}</span>
                 </a>
                 {idx !== SOCIAL_LIST.length - 1 && (
-                  <span className="text-gray-400 dark:text-gray-500">|</span>
+                  <span className="text-gray-700 dark:text-gray-200">|</span>
                 )}
               </Fragment>
             ))}

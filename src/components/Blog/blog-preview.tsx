@@ -41,7 +41,7 @@ export const BlogPreview: React.FC<Blog> = (props) => {
           <span>{comment_count} comments</span>
         </div>
       </div>
-      <div className="text-xl font-bold tracking-tight md:text-2xl line-clamp-1 py-4">
+      <div className="text-xl font-bold tracking-tight md:text-2xl overflow-hidden whitespace-nowrap text-ellipsis py-4">
         {title}
       </div>
       <div className="text-gray-500 dark:text-gray-400 line-clamp-1 italic">
