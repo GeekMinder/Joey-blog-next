@@ -14,14 +14,14 @@ import {
   Search,
 } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const DEFAULTPAGE_SIZE = 10;
-interface PaginationProps {
-  pageNum: number;
-  // pageSize: number;
-  total: number;
-}
+// interface PaginationProps {
+//   pageNum: number;
+//   // pageSize: number;
+//   total: number;
+// }
 
 const AllBlog: React.FC = () => {
   // todo 添加loading
