@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export const API_BASE_URL = "http://127.0.0.1:8080/api/v1";
+const domain = process.env?.NEXT_PUBLIC_SERVER_IP;
+export const API_BASE_URL = `${!domain ? "http://127.0.0.1": `https://${domain}`}:8080/api/v1`;
 
 interface RequestBody {
   [key: string]: string | number | boolean | object;
