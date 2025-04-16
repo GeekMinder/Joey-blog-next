@@ -13,6 +13,9 @@ import FixedButton from "@/components/common/fixed-button";
 import { useRouter } from "next/navigation";
 import { safeLocalStorage } from "@/constant";
 import { Comments } from "@/components/Blog/comments";
+import { markedHighlight } from "marked-highlight";
+import hljs from 'highlight.js';
+import 'highlight.js/styles/github-dark.css'; 
 
 type Props = {
   params: {
@@ -22,8 +25,13 @@ type Props = {
 
 // 配置 marked 的渲染器
 const renderer = new marked.Renderer();
-
-// 为标题添加 id
+marked.use(markedHighlight({
+  langPrefix: 'hljs language-',
+  highlight(code, lang) {
+    const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+    return hljs.highlight(code, { language }).value;
+  }
+}));
 // 为标题添加 id
 renderer.heading = function ({ text, depth }: Tokens.Heading) {
   const id = text.toLowerCase().replace(/[^a-zA-Z0-9\u4e00-\u9fa5]+/g, "-");
