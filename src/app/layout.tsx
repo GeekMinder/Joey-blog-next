@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { SITE_METADATA } from "@/constant";
 import { nunitoSans } from "@/components/fonts";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 
 // SEO template
 export const metadata: Metadata = {
@@ -35,6 +36,7 @@ export default function RootLayout({
             <main className="mb-auto grow w-full">
               {children}
               <SpeedInsights />
+              <Analytics />
             </main>
             <Footer />
           </div>
