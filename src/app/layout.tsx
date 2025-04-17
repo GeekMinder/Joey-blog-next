@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import Footer from "@/components/Footer";
 import { SITE_METADATA } from "@/constant";
 import { nunitoSans } from "@/components/fonts";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // SEO template
 export const metadata: Metadata = {
@@ -31,7 +32,10 @@ export default function RootLayout({
         >
           <div className="flex flex-col items-center justify-center">
             <Header />
-            <main className="mb-auto grow w-full">{children}</main>
+            <main className="mb-auto grow w-full">
+              {children}
+              <SpeedInsights />
+            </main>
             <Footer />
           </div>
         </ThemeProvider>
